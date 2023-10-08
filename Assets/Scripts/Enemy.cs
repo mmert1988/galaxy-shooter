@@ -36,6 +36,7 @@ public class Enemy : MonoBehaviour
     public void Destroy()
     {
         _animator.SetTrigger("Explode");
+        Destroy(GetComponent<Collider2D>());
         Destroy(gameObject, _animator.runtimeAnimatorController.animationClips[0].length);
     }
 }
