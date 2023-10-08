@@ -1,11 +1,14 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
     [SerializeField]
     private float _speed = 4.0f;
-
+    [SerializeField]
+    private GameObject _laserPrefab;
     private Animator _animator;
+    private bool _isAlive = true;
 
     private void Start()
     {
@@ -14,6 +17,7 @@ public class Enemy : MonoBehaviour
         {
             Debug.LogError("Animator is NULL");
         }
+        StartCoroutine(FireCoroutine());
     }
 
     private void Update()
@@ -33,8 +37,26 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    private IEnumerator FireCoroutine()
+    {
+        while (_isAlive)
+        {
+            float nextFire = Random.Range(3.0f, 7.0f);
+            Fire();
+            yield return new WaitForSeconds(nextFire);
+        }
+    }
+
+    private void Fire()
+    {
+        Vector3 offset = new Vector3(0, -0.87f, 0);
+        GameObject laser = Instantiate(_laserPrefab, transform.position + offset, Quaternion.identity);
+        laser.AddComponent<EnemyFire>();
+    }
+
     public void Destroy()
     {
+        _isAlive = false;
         _animator.SetTrigger("Explode");
         Destroy(GetComponent<Collider2D>());
         Destroy(gameObject, _animator.runtimeAnimatorController.animationClips[0].length);

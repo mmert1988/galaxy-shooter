@@ -115,6 +115,7 @@ public class Player : MonoBehaviour
     {
         Vector3 offset = new Vector3(xOffset, yOffset, 0);
         GameObject laser = Instantiate(_laserPrefab, transform.position + offset, Quaternion.identity);
+        laser.AddComponent<PlayerFire>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -130,7 +131,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Damage()
+    public void Damage()
     {
         if (!_isShieldEnabled)
         {

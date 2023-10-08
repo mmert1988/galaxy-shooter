@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Laser : MonoBehaviour
+public class PlayerFire : MonoBehaviour
 {
     [SerializeField]
     private float _speed = 10.0f;
