@@ -5,9 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-    [SerializeField]
-    private Player _playerPrefab;
-
     private Player _currentPlayer;
 
     // Start is called before the first frame update
@@ -25,8 +22,8 @@ public class GameController : MonoBehaviour
     private void HandleRestart()
     {
         if (_currentPlayer == null && Input.GetKeyDown(KeyCode.R))
-        {
-            SceneManager.LoadScene(1);
+        {   
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
