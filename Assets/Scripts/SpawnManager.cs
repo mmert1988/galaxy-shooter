@@ -31,7 +31,7 @@ public class SpawnManager : MonoBehaviour
         StartCoroutine(SpawnPowerUpsRoutine());
     }
 
-    public void OnPlayerDead()
+    public void StopSpawning()
     {
         _isSpawningEnabled = false;
     }

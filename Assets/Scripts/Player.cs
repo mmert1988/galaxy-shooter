@@ -28,24 +28,12 @@ public class Player : MonoBehaviour
     private GameObject _leftEngineDamageVisualiser;
     [SerializeField]
     private GameObject _explosionPrefab;
-    private SpawnManager _spawnManager;
+    [SerializeField]
     private UIManager _uiManager;
     private AudioManager _audioManager;
 
     void Start()
     {
-        _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
-
-        if (_spawnManager == null)
-        {
-            Debug.LogError("The SpawnManager is NULL");
-        }
-
-        _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
-        if (_uiManager == null)
-        {
-            Debug.LogError("The UIManager is NULL");
-        }
 
         _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         if (_audioManager == null)
@@ -132,6 +120,10 @@ public class Player : MonoBehaviour
 
     public void Damage()
     {
+        if (_lives == 0)
+        {
+            return;
+        }
         if (!_isShieldEnabled)
         {
             Instantiate(_explosionPrefab, gameObject.transform.position, Quaternion.identity);
@@ -152,7 +144,6 @@ public class Player : MonoBehaviour
 
     private void PlayerDieRoutine()
     {
-        _spawnManager.OnPlayerDead();
         Destroy(gameObject, 0.8f);
     }
 
