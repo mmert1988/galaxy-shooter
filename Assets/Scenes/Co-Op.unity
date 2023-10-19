@@ -375,7 +375,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 124086328}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1030320578}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 04781377bd1bb4ed39987d988f0a285d, type: 3}
@@ -1871,6 +1871,27 @@ RectTransform:
   m_AnchoredPosition: {x: 1.43, y: -6.73}
   m_SizeDelta: {x: 2.315381, y: 1.0319443}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1030320578 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3143720736830561459, guid: 1d4a0d63ad1384a45b1489404ba181a9,
+    type: 3}
+  m_PrefabInstance: {fileID: 124086328}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1030320579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030320578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b164cbc823f3487288192e777bd1f32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _horizontalAxisName: Horizontal
+  _verticalAxisName: Vertical
+  _fireKeyCode: 303
 --- !u!1 &1118405851
 GameObject:
   m_ObjectHideFlags: 0
@@ -2233,6 +2254,27 @@ RectTransform:
   m_AnchoredPosition: {x: -1.6680002, y: -6.7300005}
   m_SizeDelta: {x: 129.342, y: 21.015255}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1467503519 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3143720736830561459, guid: 1d4a0d63ad1384a45b1489404ba181a9,
+    type: 3}
+  m_PrefabInstance: {fileID: 3143720738401230679}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1467503520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1467503519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b164cbc823f3487288192e777bd1f32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _horizontalAxisName: Horizontal Alternate
+  _verticalAxisName: Vertical Alternate
+  _fireKeyCode: 304
 --- !u!1 &1540019770 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4707960852350282538, guid: 7c8f0dbc8e6a24d6b93abd90d42dafe1,
@@ -2725,7 +2767,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 3143720738401230679}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1467503519}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 04781377bd1bb4ed39987d988f0a285d, type: 3}

@@ -9,7 +9,6 @@ public class Player : MonoBehaviour
     private GameObject _laserPrefab;
     [SerializeField]
     private float _fireRate = 0.5f;
-    private float _nextFire = 0f;
     [SerializeField]
     private int _lives = 3;
     [SerializeField]
@@ -34,7 +33,6 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-
         _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         if (_audioManager == null)
         {
@@ -43,66 +41,6 @@ public class Player : MonoBehaviour
 
         _uiManager.UpdateLives(_lives);
         _uiManager.UpdateScore(_score);
-    }
-
-    void Update()
-    {
-        CalculateMovement();
-        HandleFire();
-    }
-
-    private void CalculateMovement()
-    {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-        transform.Translate(Vector3.right * horizontalInput * _speed * Time.deltaTime);
-        transform.Translate(Vector3.up * verticalInput * _speed * Time.deltaTime);
-
-        float y = transform.position.y;
-        float boundaryTop = 5.8f;
-        float boundaryBottom = -3.8f;
-        if (y <= boundaryBottom)
-        {
-            transform.position = new Vector3(transform.position.x, boundaryBottom, transform.position.z);
-        }
-        else if (y >= boundaryTop)
-        {
-            transform.position = new Vector3(transform.position.x, boundaryTop, transform.position.z);
-        }
-
-        float x = transform.position.x;
-        float horizontalBound = 11.5f;
-        if (x <= -horizontalBound)
-        {
-            transform.position = new Vector3(horizontalBound, transform.position.y, transform.position.z);
-        }
-        else if (x >= horizontalBound)
-        {
-            transform.position = new Vector3(-horizontalBound, transform.position.y, transform.position.z);
-        }
-
-        _thrusterVisualiser.SetActive(horizontalInput != 0 || verticalInput != 0);
-    }
-
-    private void HandleFire()
-    {
-        if (Input.GetKey(KeyCode.Space) && Time.time > _nextFire)
-        {
-            _nextFire = Time.time + _fireRate;
-            HandleSingleFire(0, 0.65f);
-            if (_isTripleShotEnabled)
-            {
-                HandleSingleFire(0.55f, -0.3f);
-                HandleSingleFire(-0.55f, -0.3f);
-            }
-        }
-    }
-
-    private void HandleSingleFire(float xOffset, float yOffset)
-    {
-        Vector3 offset = new Vector3(xOffset, yOffset, 0);
-        GameObject laser = Instantiate(_laserPrefab, transform.position + offset, Quaternion.identity);
-        laser.AddComponent<PlayerFire>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -116,6 +54,26 @@ public class Player : MonoBehaviour
         {
             Damage();
         }
+    }
+
+    public void SetThrusterVisualiserActive(bool active)
+    {
+        _thrusterVisualiser.SetActive(active);
+    }
+
+    public bool IsTrippleShotEnabled()
+    {
+        return _isTripleShotEnabled;
+    }
+
+    public float GetFireRate()
+    {
+        return _fireRate;
+    }
+
+    public float GetSpeed()
+    {
+        return _speed;
     }
 
     public void Damage()
@@ -189,5 +147,12 @@ public class Player : MonoBehaviour
     {
         _score += 10;
         _uiManager.UpdateScore(_score);
+    }
+
+    public void Fire(float xOffset, float yOffset)
+    {
+        Vector3 offset = new Vector3(xOffset, yOffset, 0);
+        GameObject laser = Instantiate(_laserPrefab, transform.position + offset, Quaternion.identity);
+        laser.AddComponent<PlayerFire>();
     }
 }
