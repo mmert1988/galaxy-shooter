@@ -32,6 +32,7 @@ public class GameController : MonoBehaviour
     void Update()
     {
         HandleRestart();
+        HandleQuit();
     }
 
     private void HandleRestart()
@@ -40,9 +41,13 @@ public class GameController : MonoBehaviour
         {   
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+    }
+
+    private void HandleQuit()
+    {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Application.Quit();
+            SceneManager.LoadScene(0);
         }
     }
 
