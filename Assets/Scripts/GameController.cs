@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private Text _restartText;
     private Coroutine _watchPlayersCoroutine;
+    private bool isPauseActive = false;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +34,7 @@ public class GameController : MonoBehaviour
     {
         HandleRestart();
         HandleQuit();
+        HandlePause();
     }
 
     private void HandleRestart()
@@ -48,6 +50,15 @@ public class GameController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene(0);
+        }
+    }
+
+    private void HandlePause()
+    {
+        if (Input.GetKeyDown(KeyCode.P) && SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            Time.timeScale = isPauseActive ? 1 : 0;
+            isPauseActive = !isPauseActive;
         }
     }
 
